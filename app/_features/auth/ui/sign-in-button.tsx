@@ -2,14 +2,15 @@
 
 import { signIn } from 'next-auth/react';
 import { FC } from 'react';
+import { Button } from '@nextui-org/button';
 
 const SignInButton: FC = () => {
   return (
-    <button
+    <Button
       onClick={() => signIn('github', { callbackUrl: '/', redirect: true })}
     >
       Sign In
-    </button>
+    </Button>
   );
 };
 
