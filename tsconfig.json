@@ -26,6 +26,9 @@
       "@global/*": [
         "./app/_global/*"
       ],
+      "@views/*": [
+        "./app/_views/*"
+      ],
       "@entities/*": [
         "./app/_entities/*"
       ],
@@ -40,6 +43,9 @@
       ],
       "@routes/*": [
         "./app/(routes)/*"
+      ],
+      "@core/*": [
+        "./app/api/_core/*"
       ]
     },
     "plugins": [

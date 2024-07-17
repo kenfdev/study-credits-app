@@ -10,7 +10,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <main>{children}</main>
+          <main className="container mx-auto my-8">{children}</main>
         </Providers>
       </body>
     </html>

@@ -4,6 +4,7 @@ export async function up(db: Kysely<any>): Promise<void> {
   await db.schema
     .createTable('cardAccounts')
     .addColumn('id', 'text', (col) => col.primaryKey())
+    .addColumn('name', 'text', (col) => col.notNull())
     .addColumn('isActive', 'boolean', (col) => col.notNull().defaultTo(true))
     .addColumn('rewardsStatus', 'text', (col) =>
       col.notNull().defaultTo('NONE')
@@ -18,7 +19,6 @@ export async function up(db: Kysely<any>): Promise<void> {
 
   await db.schema
     .createTable('cardAccountUsers')
-    .addColumn('id', 'text', (col) => col.primaryKey())
     .addColumn('cardAccountId', 'text', (col) =>
       col.notNull().references('cardAccounts.id').onDelete('cascade')
     )
@@ -27,13 +27,7 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn('createdAt', 'timestamp', (col) =>
       col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`)
     )
-    .execute();
-
-  await db.schema
-    .createIndex('cardAccountUsers_unique_idx')
-    .on('cardAccountUsers')
-    .columns(['cardAccountId', 'userId'])
-    .unique()
+    .addPrimaryKeyConstraint('pk_cardAccountUsers', ['cardAccountId', 'userId'])
     .execute();
 }
 
